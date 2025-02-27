@@ -5,6 +5,7 @@ import Routes from "./routes/Routes"
 export class App {
     private app: Application;
     private port;
+
     constructor() {
         this.port = process.env.PORT || 5000;
         this.app = express();
@@ -12,6 +13,7 @@ export class App {
         this.settings();
         this.routes();
     }
+
     middlewares = () => {
         this.app.use(express.json());
         this.app.use(express.urlencoded({ extended: true }));
@@ -25,6 +27,7 @@ export class App {
     routes = () => {
         this.app.use("/api", Routes.HelloRoute);
         this.app.use("/api/v1", Routes.PruebaRoute);
+        this.app.use("/api", Routes.dbPrueba);
         this.app.get("/", (_req, res) => {
             res.send("API RESTful Node.js con Express");
         });

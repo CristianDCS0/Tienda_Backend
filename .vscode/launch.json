@@ -11,10 +11,7 @@
             "skipFiles": [
                 "<node_internals>/**"
             ],
-            "program": "${workspaceFolder}\\..\\..\\Tienda\\Back\\src\\index.ts",
-            "outFiles": [
-                "${workspaceFolder}/**/*.js"
-            ]
+            "program": "${file}"
         }
     ]
 }

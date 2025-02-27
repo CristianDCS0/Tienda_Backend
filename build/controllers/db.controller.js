@@ -8,19 +8,12 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
 Object.defineProperty(exports, "__esModule", { value: true });
-const dotenv_1 = __importDefault(require("dotenv"));
-dotenv_1.default.config();
-const app_1 = require("./app");
-function main() {
-    return __awaiter(this, void 0, void 0, function* () {
-        const app = new app_1.App();
-        yield app.start();
-    });
-}
-main().catch((error) => {
-    console.error('An error occurred while starting the server:', error);
+exports.postgres = void 0;
+const db_1 = require("../db");
+const postgres = (_req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const con = yield db_1.pool.connect();
+    const result = yield con.query("SELECT * FROM users");
+    res.json(result.rows);
 });
+exports.postgres = postgres;

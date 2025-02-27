@@ -28,6 +28,7 @@ class App {
         this.routes = () => {
             this.app.use("/api", Routes_1.default.HelloRoute);
             this.app.use("/api/v1", Routes_1.default.PruebaRoute);
+            this.app.use("/api", Routes_1.default.dbPrueba);
             this.app.get("/", (_req, res) => {
                 res.send("API RESTful Node.js con Express");
             });
