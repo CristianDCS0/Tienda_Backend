@@ -16,6 +16,7 @@ exports.App = void 0;
 const express_1 = __importDefault(require("express"));
 const morgan_1 = __importDefault(require("morgan"));
 const cookie_parser_1 = __importDefault(require("cookie-parser"));
+const cors_1 = __importDefault(require("cors"));
 const Routes_1 = __importDefault(require("./routes/Routes"));
 class App {
     constructor() {
@@ -26,6 +27,10 @@ class App {
             this.app.use((0, cookie_parser_1.default)());
         };
         this.settings = () => {
+            this.app.use((0, cors_1.default)({
+                origin: '*',
+                credentials: true,
+            }));
         };
         this.routes = () => {
             this.app.use("/api/v1", Routes_1.default.AuthRoute);

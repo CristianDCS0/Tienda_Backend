@@ -1,6 +1,7 @@
 import express, {Application} from "express";
 import morgan from "morgan";
 import cookieParser from "cookie-parser";
+import cors from "cors";
 import Routes from "./routes/Routes"
 
 export class App {
@@ -23,7 +24,10 @@ export class App {
     };
 
     settings = () => {
-        
+        this.app.use(cors({
+            origin: '*',
+            credentials: true,
+        }));
     };
 
     routes = () => {
