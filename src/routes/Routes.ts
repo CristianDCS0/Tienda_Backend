@@ -1,5 +1,4 @@
 import HelloRoute from "./hello.route";
-import PruebaRoute from "./prueba.route";
-import dbPrueba from "./db.route"
+import AuthRoute from "./auth.route";
 
-export default {HelloRoute, PruebaRoute, dbPrueba};
+export default {HelloRoute, AuthRoute};

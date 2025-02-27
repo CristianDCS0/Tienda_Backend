@@ -15,6 +15,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.App = void 0;
 const express_1 = __importDefault(require("express"));
 const morgan_1 = __importDefault(require("morgan"));
+const cookie_parser_1 = __importDefault(require("cookie-parser"));
 const Routes_1 = __importDefault(require("./routes/Routes"));
 class App {
     constructor() {
@@ -22,15 +23,15 @@ class App {
             this.app.use(express_1.default.json());
             this.app.use(express_1.default.urlencoded({ extended: true }));
             this.app.use((0, morgan_1.default)("dev"));
+            this.app.use((0, cookie_parser_1.default)());
         };
         this.settings = () => {
         };
         this.routes = () => {
-            this.app.use("/api", Routes_1.default.HelloRoute);
-            this.app.use("/api/v1", Routes_1.default.PruebaRoute);
-            this.app.use("/api", Routes_1.default.dbPrueba);
+            this.app.use("/api/v1", Routes_1.default.AuthRoute);
+            this.app.use("/api/v1", Routes_1.default.HelloRoute);
             this.app.get("/", (_req, res) => {
-                res.send("API RESTful Node.js con Express");
+                res.send("API RESTful Node.js with Express for Tienda by Cristian Cobaxin");
             });
         };
         this.start = () => __awaiter(this, void 0, void 0, function* () {

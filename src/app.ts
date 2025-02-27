@@ -1,5 +1,6 @@
 import express, {Application} from "express";
 import morgan from "morgan";
+import cookieParser from "cookie-parser";
 import Routes from "./routes/Routes"
 
 export class App {
@@ -18,6 +19,7 @@ export class App {
         this.app.use(express.json());
         this.app.use(express.urlencoded({ extended: true }));
         this.app.use(morgan("dev"));
+        this.app.use(cookieParser());
     };
 
     settings = () => {
@@ -25,11 +27,10 @@ export class App {
     };
 
     routes = () => {
-        this.app.use("/api", Routes.HelloRoute);
-        this.app.use("/api/v1", Routes.PruebaRoute);
-        this.app.use("/api", Routes.dbPrueba);
+        this.app.use("/api/v1", Routes.AuthRoute);
+        this.app.use("/api/v1", Routes.HelloRoute);
         this.app.get("/", (_req, res) => {
-            res.send("API RESTful Node.js con Express");
+            res.send("API RESTful Node.js with Express for Tienda by Cristian Cobaxin");
         });
     };
 
